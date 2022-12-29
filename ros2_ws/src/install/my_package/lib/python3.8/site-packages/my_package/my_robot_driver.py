@@ -5,6 +5,26 @@ from geometry_msgs.msg import Twist
 HALF_DISTANCE_BETWEEN_WHEELS = 0.045
 WHEEL_RADIUS = 0.025
 
+"""
+/clock
+/cmd_vel
+/my_robot/Velodyne_VLP_16/point_cloud
+/my_robot/camera
+/my_robot/camera/camera_info
+/my_robot/ds0
+/my_robot/ds1
+/my_robot/lidar/point_cloud
+/parameter_events
+/remove_urdf_robot
+/rosout
+/tf_static
+
+ros2 topic pub /cmd_vel geometry_msgs/Twist  "linear: { x: 0.1 }"
+ros2 topic echo /my_robot/Velodyne_VLP_16/point_cloud
+ros2 topic echo /my_robot/lidar/point_cloud
+
+"""
+
 class MyRobotDriver:
     def init(self, webots_node, properties):
         self.__robot = webots_node.robot

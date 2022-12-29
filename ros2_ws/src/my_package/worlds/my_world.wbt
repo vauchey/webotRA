@@ -8,7 +8,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.33185733874619844 -0.09874274160469809 0.9381474178937331 3.686018050088086
-  position 1.700313773507203 1.0549607538959629 1.4846240848267684
+  position 2.3596252014749486 1.4854215763358398 2.1213585667344836
   follow "my_robot"
 }
 TexturedBackground {
@@ -19,6 +19,12 @@ CircleArena {
 }
 Robot {
   children [
+    Camera {
+      translation 0 0 0.4
+    }
+    Lidar {
+      translation 0 0 0.3
+    }
     VelodyneVLP-16 {
       translation 0 0 0.15
     }
@@ -141,6 +147,7 @@ Robot {
       aperture 1
     }
   ]
+  name "my_robot"
   boundingObject Transform {
     translation 0 0 0.0415
     children [
@@ -150,5 +157,4 @@ Robot {
   physics Physics {
   }
   controller "<extern>"
-  name "my_robot"
 }
