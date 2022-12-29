@@ -217,6 +217,7 @@ source /opt/ros/foxy/setup.bash
 
 cd ~/webotsRA/ros2_ws/src
 colcon build
+<!-->--symlink-install<!-->
 source install/local_setup.bash
 ros2 launch my_package robot_launch.py
 

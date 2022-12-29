@@ -19,6 +19,9 @@ CircleArena {
 }
 Robot {
   children [
+    VelodyneVLP-16 {
+      translation 0 0 0.15
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0

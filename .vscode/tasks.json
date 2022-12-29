@@ -14,7 +14,7 @@
         {
             "taskName": "colcon build",
             "type": "shell",
-            "command": "source /opt/ros/rolling/setup.bash && cd ros2 && colcon build --symlink-install",
+            "command": "source /opt/ros/foxy/setup.bash && cd ros2_ws/src && colcon build ",
             "problemMatcher": [
                 "$gcc"
             ]
@@ -22,11 +22,33 @@
         {
             "taskName": "ros2 launch robot_interface bridge",
             "type": "shell",
-            "command": "source /opt/ros/foxy/setup.bash && source ./install/setup.bash && ros2 launch script_launch.py",
+            "command": "source /opt/ros/foxy/setup.bash && cd ros2_ws/src && source ./install/setup.bash && ros2 launch my_package robot_launch.py",
             
             "problemMatcher": [
                 "$gcc"
             ]
         },
+        {
+            "taskName": "ros2 move robot",
+            "type": "shell",
+            "command": "source /opt/ros/foxy/setup.bash && ros2 topic pub /cmd_vel geometry_msgs/Twist  \"linear: { x: 0.1 }\"",
+            
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "taskName": "ros2 display lidar",
+            "type": "shell",
+            "command": "source /opt/ros/foxy/setup.bash && ros2 topic echo /my_robot/Velodyne_VLP_16/point_cloud",
+            
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+
+        
+
+ 
     ]
 }
