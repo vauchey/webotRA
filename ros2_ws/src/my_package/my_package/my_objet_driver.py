@@ -35,12 +35,17 @@ class MyRobotDriver:
 
 
     def init(self, webots_node, properties):
+        self.DEBUG=True
+        self.__node = rclpy.create_node('my_object_driver')
+        self.myPrint("hloooooooooooooooooooooooo\n")
         self.__robot = webots_node.robot
-
         
 
-        self.__left_motor = self.__robot.getDevice('left wheel motor')
-        self.__right_motor = self.__robot.getDevice('right wheel motor')
+        
+        
+
+        self.__left_motor = self.__robot.getDevice('obj left wheel motor')
+        self.__right_motor = self.__robot.getDevice('obj right wheel motor')
 
         self.__left_motor.setPosition(float('inf'))
         self.__left_motor.setVelocity(0)
@@ -52,14 +57,11 @@ class MyRobotDriver:
         self.__target_twist_pose = Twist()
 
         rclpy.init(args=None)
-        self.__node = rclpy.create_node('my_robot_driver')
-        self.__node.create_subscription(Twist, 'cmd_vel', self.__cmd_vel_callback, 1)
-        self.__node.create_subscription(Twist, 'cmd_pos', self.__cmd_pos_callback, 1)
+        #self.__node = rclpy.create_node('my_object_driver')
+        self.__node.create_subscription(Twist, 'obj_cmd_vel', self.__cmd_vel_callback, 1)
+        self.__node.create_subscription(Twist, 'obj_cmd_pos', self.__cmd_pos_callback, 1)
 
-        self.__node.get_logger().info("!!!!!!!!!!!!!Vincent")
-
-        self.myPrint ("self.__robot :"+str(self.__robot)+"\n")
-        self.myPrint ("dir self.__robot :"+str(dir(self.__robot))+"\n")
+    
 
 
         self.newSpeed = False

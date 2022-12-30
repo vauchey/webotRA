@@ -14,7 +14,7 @@
         {
             "taskName": "colcon build",
             "type": "shell",
-            "command": "source /opt/ros/foxy/setup.bash && cd ros2_ws/src && colcon build ",
+            "command": "source /opt/ros/foxy/setup.bash && cd ros2_ws/src && colcon build --symlink-install",
             "problemMatcher": [
                 "$gcc"
             ]
