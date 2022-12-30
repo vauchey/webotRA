@@ -20,6 +20,7 @@ WHEEL_RADIUS = 0.025
 /tf_static
 
 ros2 topic pub /cmd_vel geometry_msgs/Twist  "linear: { x: 0.1 }"
+ros2 topic pub /cmd_vel geometry_msgs/Twist  "angular: { z: 0.1 }"
 ros2 topic echo /my_robot/Velodyne_VLP_16/point_cloud
 ros2 topic echo /my_robot/lidar/point_cloud
 

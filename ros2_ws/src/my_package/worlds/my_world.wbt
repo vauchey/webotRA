@@ -7,8 +7,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2022b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.33185733874619844 -0.09874274160469809 0.9381474178937331 3.686018050088086
-  position 2.3596252014749486 1.4854215763358398 2.1213585667344836
+  orientation -0.20821024981805716 0.048925973880833286 0.9768596321634517 2.6903185362237747
+  position 1.507055130826124 -0.11325386850797371 0.65045516018213
   follow "my_robot"
 }
 TexturedBackground {
@@ -21,9 +21,15 @@ Robot {
   children [
     Camera {
       translation 0 0 0.4
+      rotation 0 0 0.9999999999999999 0
+      scale 1.00001 1.00001 1.00001
+      fieldOfView 0.78539
+      width 1280
+      height 720
     }
     Lidar {
       translation 0 0 0.3
+      type "rotating"
     }
     VelodyneVLP-16 {
       translation 0 0 0.15
@@ -148,6 +154,90 @@ Robot {
     }
   ]
   name "my_robot"
+  boundingObject Transform {
+    translation 0 0 0.0415
+    children [
+      USE BODY
+    ]
+  }
+  physics Physics {
+  }
+  controller "<extern>"
+}
+
+
+Robot {
+  translation 3.5 0 0.1
+  children [
+    Transform {
+      translation 0 0 0.0415
+      scale 0.2 0.2 0.2
+      children [
+        CadShape {
+          url [
+            "/home/user/webotRA/euro_pallet/euro_pallet_FINAL.dae"
+          ]
+        }
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BODY Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    DistanceSensor {
+      translation 0.042 0.02 0.063
+      rotation 0 0 1 0.5236003061004253
+      children [
+        DEF SENSOR Transform {
+          rotation 0 1 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 1 0
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "obj1_ds0"
+      lookupTable [
+        0 1020 0
+        0.05 1020 0
+        0.15 0 0
+      ]
+      numberOfRays 2
+      aperture 1
+    }
+    DistanceSensor {
+      translation 0.042 -0.02 0.063
+      rotation 0 0 1 -0.5235996938995747
+      children [
+        USE SENSOR
+      ]
+      name "obj1_ds1"
+      lookupTable [
+        0 1020 0
+        0.05 1020 0
+        0.15 0 0
+      ]
+      numberOfRays 2
+      aperture 1
+    }
+  ]
+  name "my_object1"
   boundingObject Transform {
     translation 0 0 0.0415
     children [

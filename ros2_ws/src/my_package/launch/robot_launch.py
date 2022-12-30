@@ -29,9 +29,20 @@ def generate_launch_description():
         ]
     )
 
+    my_robot_driver2 = Node(
+        package='webots_ros2_driver',
+        executable='driver',
+        output='screen',
+        additional_env={'WEBOTS_CONTROLLER_URL': controller_url_prefix() + 'my_object1'},
+        parameters=[
+            {'robot_description': robot_description},
+        ]
+    )
+
     return LaunchDescription([
         webots,
         my_robot_driver,
+        my_robot_driver2,
         ros2_supervisor,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
