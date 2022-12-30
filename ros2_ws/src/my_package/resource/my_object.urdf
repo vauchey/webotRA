@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<robot name="My object">
+    <webots>
+        <plugin type="my_package.my_robot_driver.MyObjectDriver" />
+    </webots>
+</robot>

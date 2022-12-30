@@ -8,7 +8,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.20821024981805716 0.048925973880833286 0.9768596321634517 2.6903185362237747
-  position 2.1267285019525874 -0.421500434211829 0.9595308011437926
+  position 2.124474903591871 -0.4203794179030212 0.9584067696938972
   follow "my_robot"
 }
 TexturedBackground {
@@ -157,6 +157,167 @@ Robot {
     }
   ]
   name "my_robot"
+  boundingObject Transform {
+    translation 0 0 0.0415
+    children [
+      USE BODY
+    ]
+  }
+  physics Physics {
+  }
+  controller "<extern>"
+}
+Robot {
+  translation 0.25 0 0
+  children [
+    Transform {
+      translation 0 0 0.3
+      scale 0.1 0.1 0.1
+      children [
+        CadShape {
+          url [
+            "/home/user/webotRA/palette/Palette_garden_table.dae"
+          ]
+        }
+      ]
+    }
+    GPS {
+    }
+    Camera {
+      translation 0 0 0.4
+      rotation 0 0 0.9999999999999999 0
+      scale 1.00001 1.00001 1.00001
+      fieldOfView 0.78539
+      width 1280
+      height 720
+    }
+    Lidar {
+      translation 0 0 0.3
+      type "rotating"
+    }
+    VelodyneVLP-16 {
+      translation 0 0 0.15
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "left wheel motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 0.045 0.025
+        children [
+          DEF WHEEL Transform {
+            rotation 1 0 0 1.5707996938995747
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "left wheel"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "right wheel motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.045 0.025
+        children [
+          USE WHEEL
+        ]
+        name "right wheel"
+        boundingObject USE WHEEL
+        physics Physics {
+        }
+      }
+    }
+    Transform {
+      translation 0 0 0.0415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 0 1
+            roughness 1
+            metalness 0
+          }
+          geometry DEF BODY Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    DistanceSensor {
+      translation 0.042 0.02 0.063
+      rotation 0 0 1 0.5236003061004253
+      children [
+        DEF SENSOR Transform {
+          rotation 0 1 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 1 0
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "ds0"
+      lookupTable [
+        0 1020 0
+        0.05 1020 0
+        0.15 0 0
+      ]
+      numberOfRays 2
+      aperture 1
+    }
+    DistanceSensor {
+      translation 0.042 -0.02 0.063
+      rotation 0 0 1 -0.5235996938995747
+      children [
+        USE SENSOR
+      ]
+      name "ds1"
+      lookupTable [
+        0 1020 0
+        0.05 1020 0
+        0.15 0 0
+      ]
+      numberOfRays 2
+      aperture 1
+    }
+  ]
+  name "my_object"
   boundingObject Transform {
     translation 0 0 0.0415
     children [

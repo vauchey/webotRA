@@ -12,7 +12,7 @@ from webots_ros2_driver.utils import controller_url_prefix
 def generate_launch_description():
     package_dir = get_package_share_directory('my_package')
     robot_description = pathlib.Path(os.path.join(package_dir, 'resource', 'my_robot.urdf')).read_text()
-    #object_description = pathlib.Path(os.path.join(package_dir, 'resource', 'my_object.urdf')).read_text()
+    object_description = pathlib.Path(os.path.join(package_dir, 'resource', 'my_object.urdf')).read_text()
     webots = WebotsLauncher(
         world=os.path.join(package_dir, 'worlds', 'my_world.wbt')
     )
@@ -31,18 +31,18 @@ def generate_launch_description():
         ]
     )
 
-    """
+    
     my_robot_driver2 = Node(
         package='webots_ros2_driver',
         executable='driver',
         output='screen',
-        additional_env={'WEBOTS_CONTROLLER_URL': controller_url_prefix() + 'Ros2Supervisor'},
+        additional_env={'WEBOTS_CONTROLLER_URL': controller_url_prefix() + 'my_object'},
         parameters=[
             {'robot_description': object_description},
               
         ]
     )
-    """
+    
 
     #publish poses in 
     robot_state_publisher = Node(
@@ -79,9 +79,9 @@ def generate_launch_description():
     return LaunchDescription([
         webots,
         my_robot_driver,
-        robot_state_publisher,
-        footprint_publisher,
-        #my_object_driver,
+        #robot_state_publisher,
+        #footprint_publisher,
+        my_robot_driver2,
         ros2_supervisor,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
