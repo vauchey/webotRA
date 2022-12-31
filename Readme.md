@@ -6,9 +6,9 @@ sudo apt-add-repository 'deb https://cyberbotics.com/debian/ binary-amd64/'
 sudo apt update
 
 
-# besoin d'une version specifique de R2022b https://github.com/cyberbotics/webots/releases/tag/R2022a
-wget https://github.com/cyberbotics/webots/releases/download/R2022a/webots_2022a_amd64.deb
-sudo apt install ./webots_2022a_amd64.deb
+# besoin d'une version specifique de R2022b https://github.com/cyberbotics/webots/releases/tag/R2022b
+https://github.com/cyberbotics/webots/releases/download/R2022b/webots_2022b_amd64.deb
+sudo apt install ./webots_2022b_amd64.deb
 <!--> sudo apt-get install webots:R2022b-ubuntu20.04 <!-->
 <!-->docker run -it cyberbotics/webots:R2022b-ubuntu20.04<!-->
 
