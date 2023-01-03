@@ -224,3 +224,14 @@ ros2 launch my_package robot_launch.py
 
 #install dans /home/user/.ros
 
+# install rtmaps
+
+wget -qO- 'http://dl.intempora.com/linux/support_at_intempora.com.gpg.key' | sudo apt-key add -
+ 
+
+sudo wget http://dl.intempora.com/linux/$(lsb_release -sc)/intempora.list -O '/etc/apt/sources.list.d/intempora.list'
+
+ 
+sudo apt-get update
+sudo apt-get install rtmaps
+sudo apt-get install rtmaps-samples
